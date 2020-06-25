@@ -26,8 +26,8 @@
               <% end %>
             </li>
             <li>
-              <%= link_to "#" do %>
-                <%= image_tag "icons/camera.png" %>
+              <%= link_to new_topic_path do %>
+                <%= image_tag 'icons/camera.png' %>
               <% end %>
             </li>
             <li>
@@ -52,6 +52,12 @@
     </nav>
 
     <%= yield %>
+    <script>
+    setTimeout(function(){
+    $(".alert").fadeOut("slow");  
+    },3000)
+    
+    </script>
 
   </body>
 </html>

@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  
+  def index
+    @topics = Topic.all
+  end
+  
   def new
     @user = User.new
   end
