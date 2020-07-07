@@ -1,7 +1,8 @@
 class TopicsController < ApplicationController
   
   def index
-    @topics = Topic.all
+    @topics = Topic.all.includes(:favorite_users)
+
   end
   
   def new
@@ -18,6 +19,18 @@ class TopicsController < ApplicationController
       render :new
     end
   end
+  
+    
+  def show
+    @topic = Topic.includes(:user).find(params[:id])
+    @user = @topic.user
+    @comment  = @topic.comments.build(user_id: current_user.id) if current_user
+    
+        # 変数@likes_countを定義
+    @favorite_count = Favorite.where(post_id: @topic.id).count
+
+  end
+  
 
   private
   def topic_params

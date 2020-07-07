@@ -1,3 +1,8 @@
+<!--<head>-->
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+<!--  <link href="assets/stylesheets/favorites.scss" rel="stylesheet">-->
+
+<!--</head>-->
 <div class="topic-index-wrapper">
   <div class="container">
     <% @topics.each do |topic| %>
@@ -8,14 +13,45 @@
               <%= topic.user.name %>
             </h2>
             <%= image_tag topic.image.url %>
-            <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon' %>
-            <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+            <% if !topic.favorite_users.include?(current_user) %>
+            <!--お気に入りが押された後の動作-->
+              <%= link_to favorites_path(topic_id: topic.id), method: :post do %>
+                  <i class="far fa-heart topic-index-icon" ></i>
+              <% end %>
+            
+            <% else %>
+              <%= link_to favorites_path(topic_id: topic.id), method: :delete do %>
+                  <i class="far fa-heart topic-index-icon2" ></i>
+              <% end %>
+              
+            
+            <% end %>
+                        <%= topic.favorite_users.count %>
+
+            
             <p class="topic-text">
               <%= topic.description %>
             </p>
+            <%= link_to new_comment_path(topic_id: topic.id) do %>
+
+            <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+            <% end %>
+            <div>
+              
+              <% topic.comments.each do |comment| %>
+              <div class="comment">
+                <strong><%= comment.user.name %></strong>
+                <br/>
+                <p><%= comment.body %></p>
+              </div>
+              
+              <% end %>
+                <% end %>
+
+            </div>
           </div>
         </div>
       </div>
-    <% end %>
   </div>
+  
 </div>

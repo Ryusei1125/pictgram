@@ -1,3 +1,23 @@
 // Place all the styles related to the topics controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.topic-index-icon{
+   width: 25px;
+   height: 30px;
+   font-size: 25px;
+   color: #808080; 
+   margin-left: 20px;
+}
+
+.topic-index-icon2{
+   width: 25px;
+   height: 30px;
+   font-size: 25px;
+   color: red;
+   margin-left: 20px;
+  
+}
+
+.comment p{
+   margin-left:20px;
+}

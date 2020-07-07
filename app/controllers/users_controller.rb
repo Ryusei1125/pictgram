@@ -4,10 +4,12 @@ class UsersController < ApplicationController
     @topics = Topic.all
   end
   
+  # saveはされない
   def new
     @user = User.new
   end
-
+  
+  # new + saveされる
   def create
     @user = User.new(user_params)
     # binding.pry
